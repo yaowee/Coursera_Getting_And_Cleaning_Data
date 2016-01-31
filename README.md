@@ -28,6 +28,7 @@ The steps in the script as executed in the following order:
 **Step 1: Checks data set in current directory.**
 
 1.1. Checks if data set exist in the current directory.
+
 1.2. If data set does not exist, download the data set required and unzips it to the current directory the script is in.
 
 **Step 2:  Merges the training and the test sets with feature names, activity names and subject Ids to create one data set.**
@@ -50,4 +51,42 @@ The steps in the script as executed in the following order:
 
 2.8 Repeat **steps 2.2 to 2.7** to get a combined data set for the test data found in the directory **_test/_**
 
-2.9 Create a merged the training and test set by appending the test set data after the training set
+2.9 Create a merged data frame of both training and test set by appending the test set data after the training set. At this point, **section 3.1 and 3.3** has been achieved
+
+**Step 3: Extracts only measurements on the mean and standard deviation for each measurement**
+
+**NOTE: Step 3 achieves 3.2 mentioned in section 3.**
+
+3.1 Extract variables in the data frame from step 2 that are mean and standard deviation of each measurement using regular expression along with the columns that contain observation subject Ids and activity names into a new data frame
+
+**Step 4: Renaming the data set with descriptive variable names.**
+
+**NOTE: Step 4 achieves 3.4 mentioned in section 3.**
+
+Using data frame from step 3,
+
+4.1 Replace all column names that start with a 't' with 'Time'
+
+4.2 Replace all column names that start with a 'f' with 'Freq'
+
+4.3 Replace all column names with '-mean()' with '.Mean'
+
+4.4 Replace all column names with '-std()' with '.StdDev'
+
+4.5 Replace all column names ending with '-X', '-Y', '-Z' with ".Xaxis",".Yaxis",".Zaxis" respectively
+
+
+**Step 5: Create and output a second, independent tidy data set with the average of each variable for each activity and each subject**
+
+**NOTE: Step 5 achieves 3.5 mentioned in section 3.**
+
+Using data frame from step 4,
+
+5.1 Create a data set that contains the average of each variable for each activity and each subject using **dplyr** package
+
+5.2 Rename the variables' column names to reflect that each variable is average for each activity and each subject
+
+5.3 Writes tidy data set to file without row names
+
+
+
