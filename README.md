@@ -27,9 +27,8 @@ The steps in the script as executed in the following order:
 
 **Step 1: Checks data set in current directory.**
 
-1.1 Checks if data set exist in the current directory.
-
-1.2 If data set does not exist, download the data set required and unzips it to the current directory the script is in.
+1.1. Checks if data set exist in the current directory.
+1.2. If data set does not exist, download the data set required and unzips it to the current directory the script is in.
 
 **Step 2:  Merges the training and the test sets with feature names, activity names and subject Ids to create one data set.**
 
