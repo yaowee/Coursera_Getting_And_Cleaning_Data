@@ -1,14 +1,23 @@
-#This script requires package "dplyr" to successfully
-#Downloads the data sets required and unzips it to the current directory the script is in.
-#file.url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-#file.dest <- "UCI_HAR_Dataset.zip"
-#download.file(url=file.url,destfile = file.dest)
-#unzip(file.dest,exdir=".")
+#This script requires package "dplyr" to installed for successful run and output a tidy data set
 
-#Step 1: Merging the training and the test sets with activity to create one data set. By working on the following steps:
+#Step 1: Checks if data set exist in the current directory and downloads the data set required 
+# and unzips it to the current directory the script is in.
+
+#URL to download the data set
+file.url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+file.name <- "UCI_HAR_Dataset.zip"
+#If file does not exist in the current directory, download the file and unzip in the current directory
+if(!file.exists(file.name)){
+    download.file(url=file.url,destfile = file.name)    
+    unzip(file.name,exdir=".")
+}
+#remove the variables after use
+rm(file.url,file.name)
+
+#Step 2: Merging the training and the test sets with activity to create one data set. By working on the following steps:
 #NOTE: Step 1 achieves part 1 and 3 listed in the project document.
 
-#Step 1.1 - Preparing training set for merging with labels, label activity names, 
+#Step 2.1 - Preparing training set for merging with labels, label activity names, 
 #feature names and subject ids by reading data files.
 #Extract feature names from file
 features <- read.table("./UCI HAR Dataset/features.txt",header=FALSE, 
@@ -37,7 +46,7 @@ trainSet <- cbind(trainSubjectsId, ActivityName = trainLabels[,c("ActivityName")
 #Remove unused data.frames trainLabels,trainActivityNames and trainSubjectId after merging all necessary data with training set
 rm(trainLabels,trainSubjectsId)
 
-#Step 1.2 - Preparing testset for merging by merging labels, feature names and subject ids by reading data files.
+#Step 2.2 - Preparing testset for merging by merging labels, feature names and subject ids by reading data files.
 #Read training set file and name columns with extracted feature names
 testSet <- read.table("./UCI HAR Dataset/test/X_test.txt", header = FALSE )
 #Set column names as names of features extracted in featureNames
@@ -56,19 +65,19 @@ testSet <- cbind(testSubjectsId, ActivityName = testLabels[,c("ActivityName")], 
 #after merging all necessary data with test set
 rm(testLabels,testSubjectsId,featureNames,activityLabels)
 
-#Step 1.3 - Merge training and testing data set
+#Step 2.3 - Merge training and testing data set
 combinedDataSet <- rbind(trainSet,testSet)
 #Remove training and test data after combining the 2 sets of data
 rm(trainSet,testSet)
 
-#Step 2: Extract only columns that are mean and standard deviation for each measurement
+#Step 3: Extract only columns that are mean and standard deviation for each measurement
 #NOTE: this step covers part 2 of the project document. Extracts on mean and standard deviation measures
 #subset on columns with the following column name matches: SubjectId, ActivityName, std() or mean()
 meanStdDataSet <- combinedDataSet[,grepl("SubjectId|ActivityName|(std\\(\\))|(mean\\(\\))",colnames(combinedDataSet))]
 #Removes unused combinedDataSet since it is no longer required
 #rm(combinedDataSet)
 
-#Step 3: Renaming the data set with descriptive variable names.
+#Step 4: Renaming the data set with descriptive variable names.
 #NOTE: this step covers part 4 of the project document.
 #3.1 - Replace all column names with a 't' at the beginning with 'Time'
 colnames(meanStdDataSet) <- sub("^t","Time",colnames(meanStdDataSet))
@@ -81,7 +90,7 @@ colnames(meanStdDataSet) <- sub("-std\\(\\)",".StdDev",colnames(meanStdDataSet))
 #3.5 - Replace all column names ending with '-X', '-Y', '-Z' with ".Xaxis",".Yaxis",".Zaxis" respectively
 colnames(meanStdDataSet) <- sub("(-)([XYZ]{1})",".\\2axis",colnames(meanStdDataSet))
 
-#Step 4 - Create a second, independent tidy data set with the average of each variable for each activity and each subject
+#Step 5 - Create a second, independent tidy data set with the average of each variable for each activity and each subject
 #NOTE: this step covers part 5 of the project documents
 #Assumes that dplyr library has been installed
 library(dplyr)
@@ -90,5 +99,6 @@ tidyDataSet <- meanStdDataSet %>% group_by(SubjectId,ActivityName) %>% summarise
 
 #Rename only the variable column names to reflect that each variable is average for each activity and each subject
 colnames(tidyDataSet)[-(1:2)] <- paste("Avg",colnames(tidyDataSet)[-(1:2)],sep = ".")
+
 #writes tidy data set to file
 write.table(tidyDataSet,"tidy_Smartphone_DataSet.txt",sep="\t",row.names = FALSE)
