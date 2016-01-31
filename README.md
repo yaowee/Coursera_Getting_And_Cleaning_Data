@@ -75,6 +75,7 @@ Using data frame from step 3,
 
 4.5 Replace all column names ending with '-X', '-Y', '-Z' with ".Xaxis",".Yaxis",".Zaxis" respectively
 
+**NOTE: For details of what transformation were made to the column names please goto:** **
 
 **Step 5: Create and output a second, independent tidy data set with the average of each variable for each activity and each subject**
 
