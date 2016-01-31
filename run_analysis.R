@@ -14,8 +14,8 @@ if(!file.exists(file.name)){
 #remove the variables after use
 rm(file.url,file.name)
 
-#Step 2: Merging the training and the test sets with activity to create one data set. By working on the following steps:
-#NOTE: Step 1 achieves part 1 and 3 listed in the project document.
+#Step 2: Merging the training and the test sets with activity names and subject Ids to create one data set.
+#NOTE: Step 2 achieves part 1 and 3 listed in the project document.
 
 #Step 2.1 - Preparing training set for merging with labels, label activity names, 
 #feature names and subject ids by reading data files.
@@ -32,7 +32,7 @@ trainSet <- read.table("./UCI HAR Dataset/train/X_train.txt", header = FALSE )
 #Set column names as the names of features extracted in featureNames
 colnames(trainSet) <- featureNames
 
-#Extract activity label names and merge with training activity names.
+#Extract training activity label and activity names and create activity names column for each observation in the training set.
 #NOTE: This step creates descriptive activity names to names activities in the data set described in part 3 of project.
 activityLabels <- read.table("./UCI HAR Dataset/activity_labels.txt", header =FALSE, col.names = c("Label","ActivityName"))
 trainLabels <- read.table("./UCI HAR Dataset/train/y_train.txt", header=FALSE, col.names = c("Label"))
@@ -79,15 +79,15 @@ meanStdDataSet <- combinedDataSet[,grepl("SubjectId|ActivityName|(std\\(\\))|(me
 
 #Step 4: Renaming the data set with descriptive variable names.
 #NOTE: this step covers part 4 of the project document.
-#3.1 - Replace all column names with a 't' at the beginning with 'Time'
+#4.1 - Replace all column names that start with a 't' with "Time"
 colnames(meanStdDataSet) <- sub("^t","Time",colnames(meanStdDataSet))
-#3.2 - Replace all column names with 'f' at the beginning with "Freq"
+#4.2 - Replace all column names that start with a 'f' with "Freq"
 colnames(meanStdDataSet) <- sub("^f","Freq",colnames(meanStdDataSet))
-#3.3 - Replace all column names with '-mean()' with ".Mean"
+#4.3 - Replace all column names with '-mean()' with ".Mean"
 colnames(meanStdDataSet) <- sub("-mean\\(\\)",".Mean",colnames(meanStdDataSet))
-#3.4 - Replace all column names with '-std()' with ".StdDev"
+#4.4 - Replace all column names with '-std()' with ".StdDev"
 colnames(meanStdDataSet) <- sub("-std\\(\\)",".StdDev",colnames(meanStdDataSet))
-#3.5 - Replace all column names ending with '-X', '-Y', '-Z' with ".Xaxis",".Yaxis",".Zaxis" respectively
+#4.5 - Replace all column names ending with '-X', '-Y', '-Z' with ".Xaxis",".Yaxis",".Zaxis" respectively
 colnames(meanStdDataSet) <- sub("(-)([XYZ]{1})",".\\2axis",colnames(meanStdDataSet))
 
 #Step 5 - Create a second, independent tidy data set with the average of each variable for each activity and each subject
@@ -100,5 +100,5 @@ tidyDataSet <- meanStdDataSet %>% group_by(SubjectId,ActivityName) %>% summarise
 #Rename only the variable column names to reflect that each variable is average for each activity and each subject
 colnames(tidyDataSet)[-(1:2)] <- paste("Avg",colnames(tidyDataSet)[-(1:2)],sep = ".")
 
-#writes tidy data set to file
+#writes tidy data set to file without row names
 write.table(tidyDataSet,"tidy_Smartphone_DataSet.txt",sep="\t",row.names = FALSE)

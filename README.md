@@ -25,13 +25,13 @@ Deliverable for this project is an R script called **_run_analysis.R_** that doe
 
 The steps in the script as executed in the following order:
 
-**Step 1: Checks data set in current directory.**
+**_Step 1: Checks data set in current directory._**
 
 1.1. Checks if data set exist in the current directory.
 
 1.2. If data set does not exist, download the data set required and unzips it to the current directory the script is in.
 
-**Step 2:  Merges the training and the test sets with feature names, activity names and subject Ids to create one data set.**
+**_Step 2:  Merges the training and the test sets with feature names, activity names and subject Ids to create one data set._**
 
 **NOTE: Step 2 achieves 3.1 and 3.3 mentioned in section 3.**
 
@@ -53,7 +53,7 @@ The steps in the script as executed in the following order:
 
 2.9 Create a merged data frame of both training and test set by appending the test set data after the training set. At this point, **section 3.1 and 3.3** has been achieved
 
-**Step 3: Extracts only measurements on the mean and standard deviation for each measurement**
+**_Step 3: Extracts only measurements on the mean and standard deviation for each measurement_**
 
 **NOTE: Step 3 achieves 3.2 mentioned in section 3.**
 
@@ -61,7 +61,7 @@ The steps in the script as executed in the following order:
 
 **NOTE: For details of what columns were extracted please goto:** https://github.com/yaowee/Coursera_Getting_And_Cleaning_Data/blob/master/CodeBook.md#features-extracted
 
-**Step 4: Renaming the data set with descriptive variable names.**
+**_Step 4: Renaming the data set with descriptive variable names._**
 
 **NOTE: Step 4 achieves 3.4 mentioned in section 3.**
 
@@ -91,5 +91,4 @@ Using data frame from step 4,
 
 5.3 Writes tidy data set to file without row names
 
-
-
+**NOTE: For details of the data columns and conventions used in the tidy data set, please goto:** https://github.com/yaowee/Coursera_Getting_And_Cleaning_Data/blob/master/CodeBook.md#tidy-data-set-data-columns--convention
