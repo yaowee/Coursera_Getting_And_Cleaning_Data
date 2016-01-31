@@ -59,7 +59,7 @@ The steps in the script as executed in the following order:
 
 3.1 Extract variables in the data frame from step 2 that are mean and standard deviation of each measurement using regular expression along with the columns that contain observation subject Ids and activity names into a new data frame
 
-**NOTE: For details of what columns were extracted please goto:** https://github.com/yaowee/Coursera_Getting_And_Cleaning_Data/blob/master/CodeBook.md#features-extracted
+**NOTE: For details of what columns were extracted please goto:** https://github.com/yaowee/Coursera_Getting_And_Cleaning_Data/blob/master/CodeBook.md#2-features-extracted
 
 **_Step 4: Renaming the data set with descriptive variable names._**
 
@@ -77,7 +77,7 @@ Using data frame from step 3,
 
 4.5 Replace all column names ending with '-X', '-Y', '-Z' with ".Xaxis",".Yaxis",".Zaxis" respectively
 
-**NOTE: For details of what transformation were made to the column names please goto:** https://github.com/yaowee/Coursera_Getting_And_Cleaning_Data/blob/master/CodeBook.md#column-naming-convention--changes
+**NOTE: For details of what transformation were made to the column names please goto:** https://github.com/yaowee/Coursera_Getting_And_Cleaning_Data/blob/master/CodeBook.md#3-feature-column-naming-convention--changes
 
 **Step 5: Create and output a second, independent tidy data set with the average of each variable for each activity and each subject**
 
@@ -91,4 +91,4 @@ Using data frame from step 4,
 
 5.3 Writes tidy data set to file without row names
 
-**NOTE: For details of the data columns and conventions used in the tidy data set, please goto:** https://github.com/yaowee/Coursera_Getting_And_Cleaning_Data/blob/master/CodeBook.md#tidy-data-set-data-columns--convention
+**NOTE: For details of the data columns and conventions used in the tidy data set, please goto:** https://github.com/yaowee/Coursera_Getting_And_Cleaning_Data/blob/master/CodeBook.md#4-tidy-data-set-data-columns--convention
