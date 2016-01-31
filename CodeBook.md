@@ -1,2 +1,5 @@
 #Smartphone Data Set CodeBook
-##Column Name Convention & Changes
+##Original Feature Selection
+##Features Extracted
+##Feature Column Naming Convention & Changes
+##Tidy Data Set Data Columns & Convention
