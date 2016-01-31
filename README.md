@@ -17,9 +17,9 @@ Deliverable for this project is an R script called **_run_analysis.R_** that doe
 3.4 Appropriately labels the data set with descriptive variable names.
 3.5 From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-##4.How **_run_analysis.R_** script Works
+##4.How **_run_analysis.R_** script works
 
-**_run_analysis.R_** script in this repository fulfills all requirements and deliverables mentioned in section 3 in 5 steps.
+**_run_analysis.R_** script in this repository fulfills all requirements and deliverables mentioned in **section 3** in 5 steps.
 
 **NOTE:** **_run_analysis.R_** uses the **dplyr** package. Please install the package prior to running the script.
 
