@@ -93,7 +93,9 @@ Specifically, after **combining the raw training and test data sets** into a dat
 Using the rules above, we see the following changes in the original column name
 
 **_Original Column Name -> Transformed Column Name_**
+
 "tBodyAcc-mean()-Z" ->  "TimeBodyAcc.Mean.Zaxis"
+
 "fBodyAcc-std()-X" -> "FreqBodyAcc.StdDev.Xaxis"
 
 ##4. Tidy Data Set Data Columns & Convention
@@ -109,7 +111,9 @@ A further column name transformation is used to indicate that the variables, oth
 Using the rules above, we see the following changes in the original column name
 
 **_Original Column Name -> Transformed Column Name_**
+
 "TimeBodyAcc.Mean.Zaxis" -> "Avg.TimeBodyAcc.Mean.Zaxis"
+
 "FreqBodyAcc.StdDev.Xaxis" -> "Avg.FreqBodyAcc.StdDev.Xaxis"
 
 The final tidy data set after the column name changes contains 180 rows and 68 variables.
