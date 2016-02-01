@@ -9,8 +9,10 @@ file.name <- "UCI_HAR_Dataset.zip"
 #If file does not exist in the current directory, download the file and unzip in the current directory
 if(!file.exists(file.name)){
     download.file(url=file.url,destfile = file.name)    
-    unzip(file.name,exdir=".")
-}
+    
+} 
+unzip(file.name,exdir=".")
+
 #remove the variables after use
 rm(file.url,file.name)
 

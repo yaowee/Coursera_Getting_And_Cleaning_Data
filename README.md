@@ -87,7 +87,7 @@ Using data frame from step 4,
 
 5.1 Create a data set that contains the average of each variable for each activity and each subject using **dplyr** package
 
-5.2 Rename the variables' column names to reflect that each variable is average for each activity and each subject
+5.2 Rename the variables' column names to reflect that each variable is average for each activity and each subject by adding a "Avg." in front of each column name to indicate that the variables are average of mean and standard deviation of measurements.
 
 5.3 Writes tidy data set to file without row names
 
